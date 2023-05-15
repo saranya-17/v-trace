@@ -1,0 +1,2 @@
+export const FETCH_VEHICLES = 'FETCH_VEHICLES';
+export const SELECT_VEHICLE = 'SELECT_VEHICLE';
