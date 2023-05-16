@@ -7,6 +7,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const VehicleList = ({ vehicles, fetchVehicleData, selectVehicle }) => {
   const [isOpen, setIsOpen] = useState(true); // State for menu open/close
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     // Fetch vehicle data on component mount
@@ -17,27 +18,36 @@ const VehicleList = ({ vehicles, fetchVehicleData, selectVehicle }) => {
     selectVehicle(vehicleId);
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const filteredVehicles = vehicles.filter((vehicle) =>
+    vehicle.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className={`vehicle-list ${isOpen ? 'open' : 'closed'}`}>
       <div className="toggle-button" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? <span>&#9656;</span> : <span>&#9662;</span>}
       </div>
-      <h2>Vehicle List</h2>
+      {isOpen ?
+      <>
       <div className="search-bar">
         <div className="search-input">
           <FontAwesomeIcon icon={faSearch} className="search-icon" />
-          <input type="text" placeholder="Search" />
+          <input type="text" placeholder="Search" onChange={handleSearch} />
         </div>
       </div>
-      <ul className={isOpen ? 'show' : 'hide'}>
-        {vehicles.map((vehicle) => (
-          <VehicleListItem
-            key={vehicle.id}
-            vehicle={vehicle}
-            onSelect={handleVehicleSelect}
-          />
+      <ul>
+      {filteredVehicles.map((vehicle) => (
+          <li key={vehicle.id} className="vehicle-item" onClick={() => handleVehicleSelect(vehicle.id)}>
+            {vehicle.name}
+          </li>
         ))}
       </ul>
+      </>
+      :''}
     </div>
   );
 };

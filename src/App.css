@@ -3,11 +3,41 @@
   align-items: flex-start;
 }
 
-.vehicle-list {
+/* .vehicle-list {
   width: 250px; /* Set the width of the menu */
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease;
   overflow: hidden;
   padding:8px
+} */ */
+
+.vehicle-list {
+  width: 300px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.vehicle-list h2 {
+  margin-bottom: 10px;
+}
+
+.vehicle-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.vehicle-list .vehicle-item {
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #eaeaea;
+  border-radius: 4px;
+  font-size: 16px;
+  color: darkslateblue;
+  font-family: open sans-serif;
+}
+
+.vehicle-list .vehicle-item:hover {
+  background-color: #d6d6d6;
 }
 
 .vehicle-list.closed {
